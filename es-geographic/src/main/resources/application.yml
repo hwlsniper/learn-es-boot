@@ -1,0 +1,49 @@
+spring:
+  profiles:
+    active: dev
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+  session:
+    store-type: redis
+  thymeleaf:
+    mode: HTML
+    suffix: .html
+    prefix: classpath:/templates/
+  devtools:
+    restart:
+      exclude: templates/**,static/**
+  mail:
+    host: smtp.qq.com
+    username: 1332601370@qq.com
+    password: hwl*****
+    properties:
+      mail:
+        smtp:
+          auth: true
+# qiniu 注意替换成自己申请的配置
+qiniu:
+  AccessKey: GVD-MVQEoOiJOt7yNBDo-JrOKWHB33eZN2JmDFC6
+  SecretKey: sHnl57ZXtStejn7GgY5VF3lnm1CxMJ3hcayexAWz
+  Bucket: lakers
+  cdn:
+    prefix: http://7xo6gy.com1.z0.glb.clouddn.com/
+
+# 阿里云短信配置 注意替换自己申请的配置
+aliyun:
+  sms:
+    accessKey: LTAISjYxxr5qLmio
+    accessKeySecret: pkqEMJIcVQV8G5fkNEQNDQV7rsntKV
+    template:
+      code: SMS_95590008
+server:
+  error:
+    path: /error
+    whitelabel:
+      enabled: false
+  port: 8899
+# 关闭HTTP基本验证
+security:
+  basic:
+    enabled: false

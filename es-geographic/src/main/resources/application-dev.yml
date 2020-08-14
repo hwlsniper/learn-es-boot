@@ -1,0 +1,38 @@
+# Mysql 注意替换相应配置
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    jdbc-url: jdbc:mysql://127.0.0.1:3306/xunwu?serverTimezone=UTC
+    username: root
+    password: 123456
+# redis config
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    pool:
+      min-idle: 1
+    timeout: 3000
+# thymeleaf
+  thymeleaf:
+    cache: false
+  # multipart config
+  http:
+    multipart:
+      enabled: true
+      location: /tmp/xunwu/images/
+      file-size-threshold: 5MB
+      max-request-size: 20MB
+  # kafka
+  kafka:
+    bootstrap-servers: 127.0.0.1:9092
+    consumer:
+      group-id: xunwu
+  application:
+    name: es-geographic
+logging:
+  config: classpath:logconfig/log4j2.xml
+plumelog:
+  appName: es-geographic
+  kafka:
+    kafkaHosts: 127.0.0.1:9092
