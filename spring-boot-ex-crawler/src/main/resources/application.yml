@@ -1,0 +1,6 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/es_goods_db
+logging:
+  config: classpath:logconfig/log4j2.xml
