@@ -1,0 +1,26 @@
+server:
+  port: 9999
+spring:
+  application:
+    name: canal-mysql-elasticsearch-sync
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306?characterSet=utf8mb4&useSSL=false
+    username: root
+    password: 123456
+    dbcp2:
+      max-idle: 20
+      min-idle: 5
+      initial-size: 2
+      validation-query: SELECT 1
+      test-while-idle: true
+mybatis:
+  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mybatis/mapper/*.xml
+# canal配置
+canal:
+  host: 127.0.0.1
+  port: 11111
+  destination: example
+  username:
+  password:
