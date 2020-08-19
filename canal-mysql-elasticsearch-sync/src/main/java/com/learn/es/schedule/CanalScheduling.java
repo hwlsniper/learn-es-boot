@@ -20,7 +20,7 @@ import java.util.List;
  * @author he.wl
  * @version 1.0.0
  * @className com.learn.es.schedule.CanalScheduling
- * @description TODO
+ * @description 调度线程
  * @date 2020/8/17 15:33
  */
 @Log4j2
@@ -35,14 +35,18 @@ public class CanalScheduling implements Runnable, ApplicationContextAware {
 	@Resource
 	private CanalConnector canalConnector;
 
+	/**
+	 * 调度间隔为 2s
+	 */
 	@Override
-	@Scheduled(fixedDelay = 2000)
+	@Scheduled(fixedDelay = 30000)
 	public void run() {
 		try {
-			int batchSize = 1000;
+			int batchSize = 2;
+			// 通过 CanalConnector 获取 binlog 消息数据(或者 MQ 数据)
 			Message message = canalConnector.getWithoutAck(batchSize);
 			long batchId = message.getId();
-			log.debug("scheduled_batchId=" + batchId);
+			log.info("scheduled_batchId=" + batchId);
 			try {
 				List<CanalEntry.Entry> entries = message.getEntries();
 				if(batchId != -1 && !entries.isEmpty()) {
@@ -61,7 +65,7 @@ public class CanalScheduling implements Runnable, ApplicationContextAware {
 	}
 
 	/**
-	 * 发布事件
+	 * 根据事件类型发布相应的事件
 	 * @param entry
 	 */
 	private void publishCanalEvent(CanalEntry.Entry entry) {
@@ -77,6 +81,7 @@ public class CanalScheduling implements Runnable, ApplicationContextAware {
 				applicationContext.publishEvent(new DeleteCanalEvent(entry));
 				break;
 			default:
+				log.warn("没有该事件类型");
 				break;
 		}
 	}

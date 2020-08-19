@@ -8,6 +8,7 @@ import com.learn.es.model.DatabaseTableModel;
 import com.learn.es.model.IndexTypeModel;
 import com.learn.es.service.MappingService;
 import lombok.extern.log4j.Log4j2;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 
@@ -38,6 +39,9 @@ public abstract class AbstractCanalListener<EVENT extends AbstractCanalEvent> im
 			return;
 		}
 		String index = indexType.getIndex();
+		if(StringUtils.isBlank(index)) {
+			return;
+		}
 		RowChange rowChange = null;
 		try {
 			rowChange = RowChange.parseFrom(entry.getStoreValue());

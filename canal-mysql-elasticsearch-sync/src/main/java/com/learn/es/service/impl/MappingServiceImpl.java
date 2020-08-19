@@ -10,6 +10,7 @@ import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +30,7 @@ import java.util.Optional;
 @Log4j2
 @Service
 @PropertySource("classpath:mapping.properties")
-@ConfigurationProperties(prefix = "dd")
+@ConfigurationProperties(prefix = "index")
 public class MappingServiceImpl implements MappingService, InitializingBean {
 
 	private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");

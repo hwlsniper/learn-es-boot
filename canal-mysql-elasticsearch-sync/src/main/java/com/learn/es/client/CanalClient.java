@@ -37,7 +37,7 @@ public class CanalClient implements DisposableBean {
 
 	@Bean
 	public  CanalConnector getCanalConnector() {
-		CanalConnectors.newClusterConnector(Lists.newArrayList(new InetSocketAddress(canalHost, Integer.valueOf(canalPort))),
+		canalConnector = CanalConnectors.newClusterConnector(Lists.newArrayList(new InetSocketAddress(canalHost, Integer.valueOf(canalPort))),
 				canalDestination, canalUsername, canalPassword);
 		canalConnector.connect();
 		// 指定filter，格式 {database}.{table}，这里不做过滤，过滤操作留给用户

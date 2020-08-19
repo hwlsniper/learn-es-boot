@@ -38,9 +38,9 @@ public class UpdateCanalListener extends AbstractCanalListener<UpdateCanalEvent>
             log.warn("update_column_find_null_warn update从column中找不到主键,database=" + database + ",table=" + table);
             return;
         }
-        log.debug("update_column_id_info update主键id,database=" + database + ",table=" + table + ",id=" + idColumn.getValue());
+        log.info("update_column_id_info update主键id,database=" + database + ",table=" + table + ",id=" + idColumn.getValue());
         Map<String, Object> dataMap = parseColumnsToMap(columns);
         elasticsearchService.update(index, idColumn.getValue(), dataMap);
-        log.debug("update_es_info 同步es插入操作成功！database=" + database + ",table=" + table + ",data=" + dataMap);
+        log.info("update_es_info 同步es插入操作成功！database=" + database + ",table=" + table + ",data=" + dataMap);
     }
 }
