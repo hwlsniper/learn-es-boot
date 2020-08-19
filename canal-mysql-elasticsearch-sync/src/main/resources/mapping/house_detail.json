@@ -1,0 +1,41 @@
+#PUT /house_detail
+{
+  "mappings": {
+    "properties": {
+      "detail_id": {
+        "type": "long"
+      },
+      "description": {
+        "type": "text",
+        "analyzer": "ik_max_word"
+      },
+      "layout_desc": {
+        "type": "text",
+        "analyzer": "ik_max_word"
+      },
+      "traffic": {
+        "type": "text",
+        "analyzer": "ik_max_word"
+      },
+      "round_service": {
+        "type": "text",
+        "analyzer": "ik_max_word"
+      },
+      "rent_way": {
+        "type": "integer"
+      },
+      "address": {
+        "type": "text"
+      },
+      "subway_line_name": {
+        "type": "keyword"
+      },
+      "subway_station_name": {
+        "type": "keyword"
+      },
+      "house_id": {
+        "type": "long"
+      }
+    }
+  }
+}
