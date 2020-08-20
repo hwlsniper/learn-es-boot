@@ -1,0 +1,23 @@
+#POST _bulk/?refresh=true
+{ "index" : { "_index" : "suggest_tset"} }
+{ "kwsuggest": "企业规划"}
+{ "index" : { "_index" : "suggest_tset"} }
+{ "kwsuggest": "祈愿设计 完美无瑕"}
+{ "index" : { "_index" : "suggest_tset"} }
+{ "kwsuggest": "悬崖的图片 美景"}
+{ "index" : { "_index" : "suggest_tset"} }
+{ "kwsuggest": "县衙地址 那里呢"}
+{ "index" : { "_index" : "suggest_tset"} }
+{ "kwsuggest": "悬崖风景图"}
+{ "index" : { "_index" : "suggest_tset"} }
+{ "kwsuggest": "起夜的风光 真的美"}
+{ "index" : { "_index" : "suggest_tset"} }
+{ "kwsuggest": "起夜第二个词 测试使用"}
+{ "index" : { "_index" : "suggest_tset"} }
+{ "kwsuggest": "需要一半留下一半打一字谜"}
+{ "index" : { "_index" : "suggest_tset"} }
+{ "kwsuggest": "许亚为"}
+{ "index" : { "_index" : "suggest_tset"} }
+{ "kwsuggest": "许雅非测试"}
+{ "index" : { "_index" : "suggest_tset"} }
+{ "kwsuggest": "徐杨是谁"}

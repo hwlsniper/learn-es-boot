@@ -1,0 +1,101 @@
+#PUT /suggest_tset
+{
+  "settings": {
+    "number_of_shards": 1,
+    "number_of_replicas": 0,
+    "analysis": {
+      "analyzer": {
+        "prefix_pinyin_analyzer": {
+          "tokenizer": "standard",
+          "filter": [
+            "lowercase",
+            "prefix_pinyin"
+          ]
+        },
+        "full_pinyin_analyzer": {
+          "tokenizer": "standard",
+          "filter": [
+            "lowercase",
+            "full_pinyin"
+          ]
+        },
+        "like_pinyin_analyzer": {
+          "tokenizer": "standard",
+          "filter": [
+            "lowercase",
+            "like_pinyin"
+          ]
+        }
+      },
+      "filter": {
+        "_pattern": {
+          "type": "pattern_capture",
+          "preserve_original": true,
+          "patterns": [
+            "([0-9])",
+            "([a-z])"
+          ]
+        },
+        "prefix_pinyin": {
+          "type": "pinyin",
+          "keep_first_letter": "true",
+          "keep_full_pinyin": "false",
+          "none_chinese_pinyin_tokenize": "false",
+          "keep_separate_chinese": "true",
+          "keep_original": "false"
+        },
+        "full_pinyin": {
+          "type": "pinyin",
+          "keep_first_letter": "false",
+          "keep_full_pinyin": "true",
+          "keep_original": "false",
+          "keep_separate_chinese": "true",
+          "keep_none_chinese_in_first_letter": "false"
+        },
+        "like_pinyin": {
+          "type": "pinyin",
+          "keep_first_letter": "true",
+          "keep_full_pinyin": "true",
+          "keep_joined_full_pinyin": "false",
+          "keep_original": "false",
+          "keep_separate_chinese": "false",
+          "keep_none_chinese_in_first_letter": "false"
+        }
+      }
+    }
+  },
+  "mappings": {
+    "dynamic": "false",
+    "properties": {
+      "kwsuggest": {
+        "fields": {
+          "suggestText": {
+            "type": "completion",
+            "analyzer": "standard",
+            "preserve_separators": "false",
+            "preserve_position_increments": "true",
+            "max_input_length": 50
+          },
+          "prefix_pinyin": {
+            "type": "completion",
+            "analyzer": "prefix_pinyin_analyzer",
+            "search_analyzer": "standard",
+            "preserve_separators": "false"
+          },
+          "full_pinyin": {
+            "type": "completion",
+            "analyzer": "full_pinyin_analyzer",
+            "search_analyzer": "standard",
+            "preserve_separators": "false"
+          },
+          "like_pinyin": {
+            "type": "completion",
+            "analyzer": "like_pinyin_analyzer",
+            "preserve_separators": "false"
+          }
+        },
+        "type": "text"
+      }
+    }
+  }
+}

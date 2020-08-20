@@ -1,0 +1,38 @@
+#GET /suggest_tset/_search
+{
+  "suggest": {
+    "suggestText": {
+      "prefix": "qy",
+      "completion": {
+        "field": "kwsuggest.suggestText",
+        "skip_duplicates": true
+      }
+    },
+    "full_pinyin": {
+      "prefix": "qy",
+      "completion": {
+        "field": "kwsuggest.full_pinyin",
+        "skip_duplicates": true
+      }
+    },
+    "prefix_pinyin": {
+      "prefix": "qy",
+      "completion": {
+        "field": "kwsuggest.prefix_pinyin",
+        "skip_duplicates": true
+      }
+    },
+    "like_pinyin": {
+      "prefix": "qy",
+      "completion": {
+        "field": "kwsuggest.like_pinyin",
+        "skip_duplicates": true,
+        "fuzzy": {
+          "fuzziness": 1
+        }
+      }
+    }
+  }
+}
+
+# prefix 为查询条件
